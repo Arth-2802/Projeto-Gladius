@@ -412,7 +412,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84311605}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -422,7 +422,7 @@ RectTransform:
   - {fileID: 614379785}
   - {fileID: 576493342}
   - {fileID: 15434829}
-  m_Father: {fileID: 1506305130}
+  m_Father: {fileID: 548540269}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -669,10 +669,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1924661301}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -111}
-  m_SizeDelta: {x: 0, y: -260}
+  m_AnchoredPosition: {x: 0, y: -49}
+  m_SizeDelta: {x: 0, y: -199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &353054134
 MonoBehaviour:
@@ -972,6 +972,7 @@ RectTransform:
   - {fileID: 1821960647}
   - {fileID: 1924661301}
   - {fileID: 259687274}
+  - {fileID: 84311606}
   - {fileID: 915024859}
   m_Father: {fileID: 1506305130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1024,7 +1025,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4660f7aa89d0b47b37b71576afc8f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MenuPrincipalManager
-  nomeDoLevelDeJogo: Jogo
+  nomeDoLevelDeJogo: GameScene (2)
   painelMenuInicial: {fileID: 548540268}
   painelOpcoes: {fileID: 84311605}
 --- !u!1 &576493341
@@ -1425,7 +1426,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -550, y: 260}
+  m_AnchoredPosition: {x: -550, y: 288}
   m_SizeDelta: {x: 700, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915024860
@@ -1442,7 +1443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2261,7 +2262,6 @@ RectTransform:
   m_Children:
   - {fileID: 314118895}
   - {fileID: 548540269}
-  - {fileID: 84311606}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2514,7 +2514,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -569, y: 92.887115}
+  m_AnchoredPosition: {x: -569, y: 2}
   m_SizeDelta: {x: 352, y: 60.9714}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1924661302
