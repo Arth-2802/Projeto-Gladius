@@ -12,8 +12,8 @@ public class MenuPrincipalManager : MonoBehaviour, IPointerEnterHandler, IPointe
 
     public void Jogar()
     {
-    Debug.Log("CLIQUEI NO PLAY");
     SceneManager.LoadScene(nomeDoLevelDeJogo);
+    Debug.Log("CLIQUEI NO PLAY");
     }
 
     public void AbrirOpcoes()
