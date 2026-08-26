@@ -37,7 +37,6 @@ public class MenuPrincipalManager : MonoBehaviour, IPointerEnterHandler, IPointe
         Application.Quit();
     }
 
-    // ✅ Métodos obrigatórios das interfaces
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log($"[Foco] Mouse entrou em: {gameObject.name}");
