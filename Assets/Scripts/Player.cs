@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     private const string DashAnimationState = "Dash";
+    private const string AttackTrigger = "Attack";
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -25,6 +26,12 @@ public class Player : MonoBehaviour
     public float dashCooldown = 0.5f;
     public int airDashes = 1;
 
+    [Header("Attack Variables")]
+    [Tooltip("Tempo em que o jogador fica parado após iniciar o ataque.")]
+    public float attackDuration = 0.4f;
+    [Tooltip("Intervalo mínimo entre o início de dois ataques.")]
+    public float attackCooldown = 0.5f;
+
     [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -44,6 +51,11 @@ public class Player : MonoBehaviour
     private float dashTimer = 0f;
     private int airDashesRemaining;
 
+    //Attack
+    private bool isAttacking = false;
+    private float attackTimer = 0f;
+    private float attackCooldownCounter = 0f;
+
     private void Start()
     {
         rb.gravityScale = normalGravity;
@@ -56,6 +68,7 @@ public class Player : MonoBehaviour
         Flip();
         HandleAnimations();
         UpdateDashCooldown();
+        UpdateAttackTimers();
     }
 
     void FixedUpdate()
@@ -69,6 +82,12 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
+        if (isAttacking)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            return;
+        }
+
         if (!isDashing)
         {
             float targetSpeed = moveInput.x * speed;
@@ -78,7 +97,7 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (JumpPressed && !isDashing)
+        if (JumpPressed && !isDashing && !isAttacking)
         {
             if (isGrounded)
             {
@@ -127,6 +146,24 @@ public class Player : MonoBehaviour
         }
     }
 
+    void UpdateAttackTimers()
+    {
+        if (attackCooldownCounter > 0)
+        {
+            attackCooldownCounter -= Time.deltaTime;
+        }
+
+        if (isAttacking)
+        {
+            attackTimer -= Time.deltaTime;
+
+            if (attackTimer <= 0)
+            {
+                isAttacking = false;
+            }
+        }
+    }
+
     void ApplyVariableGravity()
     {
         if (isDashing) return;
@@ -158,17 +195,19 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
-        anim.SetBool("isJumping", rb.linearVelocity.y > 1f && !isDashing);
+        anim.SetBool("isJumping", rb.linearVelocity.y > 1f && !isDashing && !isAttacking);
         anim.SetBool("isGrounded", isGrounded);
 
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
-        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < .1f && isGrounded && !isDashing);
-        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > .1f && isGrounded && !isDashing);
+        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < .1f && isGrounded && !isDashing && !isAttacking);
+        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > .1f && isGrounded && !isDashing && !isAttacking);
     }
 
     void Flip()
     {
+        if (isAttacking) return;
+
         if(moveInput.x >0.1f)
         {
             facingDirection = 1;
@@ -187,6 +226,8 @@ public class Player : MonoBehaviour
 
     public void OnJump(InputValue value)
     {
+        if (isAttacking) return;
+
         if (value.isPressed)
         {
             JumpPressed = true;
@@ -201,7 +242,7 @@ public class Player : MonoBehaviour
     {
         bool canAirDash = !isGrounded && airDashesRemaining > 0;
 
-        if (value.isPressed && dashCooldownCounter <= 0 && !isDashing && (isGrounded || canAirDash))
+        if (value.isPressed && dashCooldownCounter <= 0 && !isDashing && !isAttacking && (isGrounded || canAirDash))
         {
             if (!isGrounded)
             {
@@ -216,6 +257,18 @@ public class Player : MonoBehaviour
             anim.SetBool("isJumping", false);
             anim.SetBool("isDashing", true);
             anim.Play(DashAnimationState, 0, 0f);
+        }
+    }
+
+    public void OnAttack(InputValue value)
+    {
+        if (value.isPressed && !isDashing && !isAttacking && attackCooldownCounter <= 0)
+        {
+            isAttacking = true;
+            attackTimer = attackDuration;
+            attackCooldownCounter = attackCooldown;
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            anim.SetTrigger(AttackTrigger);
         }
     }
 
