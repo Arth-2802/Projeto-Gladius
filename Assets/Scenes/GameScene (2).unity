@@ -173,8 +173,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.45335317, y: -0.29667962}
-  m_Size: {x: 0.78001213, y: 2.0333998}
+  m_Offset: {x: -0.040436387, y: 1.4820406}
+  m_Size: {x: 1.4364445, y: 3.5580163}
   m_Direction: 0
 --- !u!50 &91096622
 Rigidbody2D:
@@ -246,6 +246,8 @@ MonoBehaviour:
   dashDuration: 0.3
   dashCooldown: 0.5
   airDashes: 1
+  attackDuration: 0.4
+  attackCooldown: 0.5
   groundCheck: {fileID: 250395796}
   groundCheckRadius: 0.5
   groundLayer:
@@ -308,7 +310,7 @@ Transform:
   m_GameObject: {fileID: 250395795}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.574, y: -1.327, z: 0}
+  m_LocalPosition: {x: -0.26, y: -0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -792,12 +794,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -3318188226485093758, guid: 5f5e3a260fc598d429fea93b19126a83, type: 3}
+  m_Sprite: {fileID: 167955250, guid: 4c0cd8a8f580e6f4d88323e567eacae0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.56, y: 3.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
