@@ -15,6 +15,11 @@ public class minion : MonoBehaviour
     [SerializeField] private float meleeCooldown = 1f;
     [SerializeField] private LayerMask targetLayer;
 
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private float criticalKnockback = 1f;
+    private int currentHealth;
+
     [Header("Ranged attack")]
     [SerializeField] private Transform projectilePoint;
     [SerializeField] private MinionProjectile projectilePrefab;
@@ -27,6 +32,8 @@ public class minion : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
+
         if (target == null && !string.IsNullOrEmpty(targetTag))
         {
             GameObject targetObject = GameObject.FindGameObjectWithTag(targetTag);
@@ -116,9 +123,36 @@ public class minion : MonoBehaviour
         Collider2D hit = Physics2D.OverlapCircle(meleePoint.position, meleeRange, targetLayer);
         if (hit != null)
         {
-            Debug.Log("Jogador esfaqueado pelo ataque corpo a corpo.");
+            Debug.Log("Jogador esfaqueado por " + meleeDamage + " de dano.");
             hit.SendMessage("TakeDamage", meleeDamage, SendMessageOptions.DontRequireReceiver);
             meleeTimer = meleeCooldown;
+        }
+    }
+
+    public void ReceiveAttack(int damage, bool isCritical, Vector2 attackerPosition)
+    {
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
+
+        if (isCritical)
+        {
+            Vector2 knockbackDirection = ((Vector2)transform.position - attackerPosition).normalized;
+            if (knockbackDirection.sqrMagnitude < 0.001f)
+            {
+                knockbackDirection = Vector2.right;
+            }
+
+            transform.position = (Vector2)transform.position + knockbackDirection * criticalKnockback;
+            Debug.Log("Crítico no minion: " + damage + " de dano. Vida: " + currentHealth + "/" + maxHealth);
+        }
+        else
+        {
+            Debug.Log("Minion recebeu " + damage + " de dano. Vida: " + currentHealth + "/" + maxHealth);
+        }
+
+        if (currentHealth == 0)
+        {
+            Debug.Log("Minion derrotado.");
+            Destroy(gameObject);
         }
     }
 
