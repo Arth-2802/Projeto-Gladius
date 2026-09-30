@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public float health = 100f;
     private const string DashAnimationState = "Dash";
-    private const string AttackTrigger = "Attack";
+
+    private Vida vida;
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -26,12 +28,6 @@ public class Player : MonoBehaviour
     public float dashCooldown = 0.5f;
     public int airDashes = 1;
 
-    [Header("Attack Variables")]
-    [Tooltip("Tempo em que o jogador fica parado após iniciar o ataque.")]
-    public float attackDuration = 0.4f;
-    [Tooltip("Intervalo mínimo entre o início de dois ataques.")]
-    public float attackCooldown = 0.5f;
-
     [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -51,13 +47,10 @@ public class Player : MonoBehaviour
     private float dashTimer = 0f;
     private int airDashesRemaining;
 
-    //Attack
-    private bool isAttacking = false;
-    private float attackTimer = 0f;
-    private float attackCooldownCounter = 0f;
-
     private void Start()
     {
+        vida = GetComponent<Vida>();
+
         rb.gravityScale = normalGravity;
         extraJumpsRemaining = extraJumps;
         airDashesRemaining = airDashes;
@@ -65,14 +58,26 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (vida.Morto)
+        {
+            moveInput = Vector2.zero;
+            isDashing = false;
+            anim.SetBool("isDashing", false);
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isJumping", false);
+            anim.SetBool("isIdle", true);
+            return;
+        }
+
         Flip();
         HandleAnimations();
         UpdateDashCooldown();
-        UpdateAttackTimers();
     }
 
     void FixedUpdate()
     {
+        if (vida.Morto) return;
+
         ApplyVariableGravity();
         CheckGrounded();
         HandleMovement();
@@ -82,12 +87,6 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (isAttacking)
-        {
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            return;
-        }
-
         if (!isDashing)
         {
             float targetSpeed = moveInput.x * speed;
@@ -97,7 +96,7 @@ public class Player : MonoBehaviour
 
     private void HandleJump()
     {
-        if (JumpPressed && !isDashing && !isAttacking)
+        if (JumpPressed && !isDashing)
         {
             if (isGrounded)
             {
@@ -129,7 +128,7 @@ public class Player : MonoBehaviour
         {
             dashTimer -= Time.deltaTime;
             rb.linearVelocity = new Vector2(facingDirection * dashSpeed, 0);
-            
+
             if (dashTimer <= 0)
             {
                 isDashing = false;
@@ -143,24 +142,6 @@ public class Player : MonoBehaviour
         if (dashCooldownCounter > 0)
         {
             dashCooldownCounter -= Time.deltaTime;
-        }
-    }
-
-    void UpdateAttackTimers()
-    {
-        if (attackCooldownCounter > 0)
-        {
-            attackCooldownCounter -= Time.deltaTime;
-        }
-
-        if (isAttacking)
-        {
-            attackTimer -= Time.deltaTime;
-
-            if (attackTimer <= 0)
-            {
-                isAttacking = false;
-            }
         }
     }
 
@@ -180,7 +161,7 @@ public class Player : MonoBehaviour
         {
             rb.gravityScale = normalGravity;
         }
-    } 
+    }
 
     void CheckGrounded()
     {
@@ -195,38 +176,38 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
-        anim.SetBool("isJumping", rb.linearVelocity.y > 1f && !isDashing && !isAttacking);
+        anim.SetBool("isJumping", rb.linearVelocity.y > 1f && !isDashing);
         anim.SetBool("isGrounded", isGrounded);
 
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
-        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < .1f && isGrounded && !isDashing && !isAttacking);
-        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > .1f && isGrounded && !isDashing && !isAttacking);
+        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < .1f && isGrounded && !isDashing);
+        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > .1f && isGrounded && !isDashing);
     }
 
     void Flip()
     {
-        if (isAttacking) return;
-
-        if(moveInput.x >0.1f)
+        if (moveInput.x > 0.1f)
         {
             facingDirection = 1;
             transform.localScale = new Vector3(1, 1, 1);
         }
-        else if(moveInput.x < -0.1f)
+        else if (moveInput.x < -0.1f)
         {
             facingDirection = -1;
             transform.localScale = new Vector3(-1, 1, 1);
         }
     }
+
     public void OnMove(InputValue value)
     {
+        if (vida != null && vida.Morto) return;
         moveInput = value.Get<Vector2>();
     }
 
     public void OnJump(InputValue value)
     {
-        if (isAttacking) return;
+        if (vida != null && vida.Morto) return;
 
         if (value.isPressed)
         {
@@ -240,9 +221,11 @@ public class Player : MonoBehaviour
 
     public void OnDash(InputValue value)
     {
+        if (vida != null && vida.Morto) return;
+
         bool canAirDash = !isGrounded && airDashesRemaining > 0;
 
-        if (value.isPressed && dashCooldownCounter <= 0 && !isDashing && !isAttacking && (isGrounded || canAirDash))
+        if (value.isPressed && dashCooldownCounter <= 0 && !isDashing && (isGrounded || canAirDash))
         {
             if (!isGrounded)
             {
@@ -260,28 +243,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void OnAttack(InputValue value)
-    {
-        if (value.isPressed && !isDashing && !isAttacking && attackCooldownCounter <= 0)
-        {
-            isAttacking = true;
-            attackTimer = attackDuration;
-            attackCooldownCounter = attackCooldown;
-            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
-            anim.SetTrigger(AttackTrigger);
-        }
-    }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
-
 }
-
-
-
-
-
-
