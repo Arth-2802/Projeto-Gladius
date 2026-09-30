@@ -4,13 +4,26 @@ using UnityEngine.InputSystem;
 
 public class Vida : MonoBehaviour
 {
-    [SerializeField] private Slider barraDeVida;
-    [SerializeField] private float vidaMaxima = 100f;
-    [SerializeField] private float danoTeste = 10f;
+    // ---------- campos que aparecem no Inspector ----------
+    [SerializeField] private Slider barraDeVida;        // a barra de vida na tela
+    [SerializeField] private float vidaMaxima = 100f;   // quanta vida o personagem tem
+    [SerializeField] private float danoTeste = 10f;     // dano da tecla de teste (H)
 
-    private float vidaAtual;
-    public bool Morto { get; private set; }
+    // ---------- dados internos ----------
+    private float vidaAtual;                            // a vida que ele tem agora
+    public bool Morto { get; private set; }             // true quando a vida zerou
 
+    // ---------- NOVO: deixa o sistema de save LER a vida ----------
+    public float VidaAtual => vidaAtual;
+
+    // ---------- NOVO: deixa o sistema de save COLOCAR a vida ----------
+    public void DefinirVida(float valor)
+    {
+        vidaAtual = Mathf.Clamp(valor, 1f, vidaMaxima);
+        barraDeVida.value = vidaAtual;
+    }
+
+    // ---------- ao iniciar a fase: vida cheia ----------
     void Start()
     {
         vidaAtual = vidaMaxima;
@@ -18,15 +31,16 @@ public class Vida : MonoBehaviour
         barraDeVida.value = vidaAtual;
     }
 
+    // ---------- a cada quadro: tecla H causa dano (so para teste) ----------
     void Update()
     {
-        // Tecla de teste: H causa dano
         if (Keyboard.current.hKey.wasPressedThisFrame)
         {
             LevarDano(danoTeste);
         }
     }
 
+    // ---------- tirar vida (o inimigo chama isto) ----------
     public void LevarDano(float dano)
     {
         if (Morto) return;
@@ -40,6 +54,7 @@ public class Vida : MonoBehaviour
         }
     }
 
+    // ---------- quando a vida zera ----------
     private void Morrer()
     {
         Morto = true;
