@@ -31,6 +31,11 @@ public class Player : MonoBehaviour
     public float attackDuration = 0.4f;
     [Tooltip("Intervalo mínimo entre o início de dois ataques.")]
     public float attackCooldown = 0.5f;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private int attackDamage = 17;
+    [SerializeField, Range(0f, 1f)] private float criticalChance = 0.25f;
+    [SerializeField] private int criticalDamage = 27;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -269,6 +274,34 @@ public class Player : MonoBehaviour
             attackCooldownCounter = attackCooldown;
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             anim.SetTrigger(AttackTrigger);
+            PerformAttack();
+        }
+    }
+
+    private void PerformAttack()
+    {
+        if (attackPoint == null)
+        {
+            attackPoint = transform;
+        }
+
+        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        bool isCritical = Random.value < criticalChance;
+        int damage = isCritical ? criticalDamage : attackDamage;
+
+        foreach (Collider2D hit in hits)
+        {
+            minion enemy = hit.GetComponentInParent<minion>();
+            if (enemy == null)
+            {
+                continue;
+            }
+
+            enemy.ReceiveAttack(damage, isCritical, transform.position);
+            Debug.Log(isCritical
+                ? "Jogador acertou um crítico de " + damage + " no minion."
+                : "Jogador acertou o minion por " + damage + " de dano.");
+            break;
         }
     }
 
