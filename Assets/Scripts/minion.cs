@@ -66,6 +66,8 @@ public class minion : MonoBehaviour
         {
             targetLayer = 1 << target.gameObject.layer;
         }
+
+        IgnorePhysicalCollisionWithTarget();
     }
 
     private void Update()
@@ -111,6 +113,25 @@ public class minion : MonoBehaviour
         Vector3 scale = transform.localScale;
         scale.x = Mathf.Abs(scale.x) * Mathf.Sign(target.position.x - transform.position.x);
         transform.localScale = scale;
+    }
+
+    private void IgnorePhysicalCollisionWithTarget()
+    {
+        if (target == null)
+        {
+            return;
+        }
+
+        Collider2D[] minionColliders = GetComponentsInChildren<Collider2D>();
+        Collider2D[] targetColliders = target.GetComponentsInChildren<Collider2D>();
+
+        foreach (Collider2D minionCollider in minionColliders)
+        {
+            foreach (Collider2D targetCollider in targetColliders)
+            {
+                Physics2D.IgnoreCollision(minionCollider, targetCollider, true);
+            }
+        }
     }
 
     private void TryMeleeAttack()
@@ -168,7 +189,7 @@ public class minion : MonoBehaviour
             projectilePoint.position,
             Quaternion.identity);
 
-        projectile.Initialize(target, rangedDamage, targetLayer);
+        projectile.InitializeAtPosition(target, target.position, rangedDamage, targetLayer);
         rangedTimer = rangedCooldown;
     }
 

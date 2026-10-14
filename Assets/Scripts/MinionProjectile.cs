@@ -6,6 +6,8 @@ public class MinionProjectile : MonoBehaviour
     [SerializeField] private float lifetime = 4f;
 
     private Transform target;
+    private Vector2 destination;
+    private bool isHoming;
     private int damage;
     private LayerMask targetLayer;
     private float launchTime;
@@ -13,6 +15,19 @@ public class MinionProjectile : MonoBehaviour
     public void Initialize(Transform newTarget, int newDamage, LayerMask newTargetLayer)
     {
         target = newTarget;
+        destination = newTarget == null ? transform.position : newTarget.position;
+        isHoming = true;
+        damage = newDamage;
+        targetLayer = newTargetLayer;
+        launchTime = Time.time;
+        Destroy(gameObject, lifetime);
+    }
+
+    public void InitializeAtPosition(Transform targetForHit, Vector2 targetPosition, int newDamage, LayerMask newTargetLayer)
+    {
+        target = targetForHit;
+        destination = targetPosition;
+        isHoming = false;
         damage = newDamage;
         targetLayer = newTargetLayer;
         launchTime = Time.time;
@@ -27,12 +42,13 @@ public class MinionProjectile : MonoBehaviour
             return;
         }
 
+        Vector2 currentDestination = isHoming ? target.position : destination;
         transform.position = Vector2.MoveTowards(
             transform.position,
-            target.position,
+            currentDestination,
             speed * Time.deltaTime);
 
-        Vector2 direction = target.position - transform.position;
+        Vector2 direction = currentDestination - (Vector2)transform.position;
         if (direction.sqrMagnitude > 0.001f)
         {
             transform.right = direction;

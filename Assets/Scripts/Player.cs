@@ -292,16 +292,24 @@ public class Player : MonoBehaviour
         foreach (Collider2D hit in hits)
         {
             minion enemy = hit.GetComponentInParent<minion>();
-            if (enemy == null)
+            if (enemy != null)
             {
-                continue;
+                enemy.ReceiveAttack(damage, isCritical, transform.position);
+                Debug.Log(isCritical
+                    ? "Jogador acertou um crítico de " + damage + " no minion."
+                    : "Jogador acertou o minion por " + damage + " de dano.");
+                break;
             }
 
-            enemy.ReceiveAttack(damage, isCritical, transform.position);
-            Debug.Log(isCritical
-                ? "Jogador acertou um crítico de " + damage + " no minion."
-                : "Jogador acertou o minion por " + damage + " de dano.");
-            break;
+            Boss boss = hit.GetComponentInParent<Boss>();
+            if (boss != null)
+            {
+                boss.ReceiveAttack(damage, isCritical, transform.position);
+                Debug.Log(isCritical
+                    ? "Jogador acertou um crítico de " + damage + " no boss."
+                    : "Jogador acertou o boss por " + damage + " de dano.");
+                break;
+            }
         }
     }
 
