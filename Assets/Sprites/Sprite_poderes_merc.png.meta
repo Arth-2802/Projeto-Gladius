@@ -6,7 +6,7 @@ TextureImporter:
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -34,27 +34,27 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
+    wrapU: 1
+    wrapV: 1
     wrapW: 0
-  nPOTScale: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 95
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -147,12 +147,1068 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 607
+        width: 181
+        height: 317
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef3c9e88210a8b144b9deb677a4f6adf
+      internalID: 1919552823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_1
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 862
+        width: 128
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c82c48e026e05f4cb2a8aeace0f6c5f
+      internalID: 825384471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_2
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 616
+        width: 290
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e08b24c82080f984f99695e64e97be4e
+      internalID: -2017835237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_3
+      rect:
+        serializedVersion: 2
+        x: 1379
+        y: 866
+        width: 4
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4d8172c9f802a8438acff32699d24e9
+      internalID: -1247736084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_4
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 855
+        width: 64
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cad30bda6ab687409c4cc14c7f0b39c
+      internalID: -1287311463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_5
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 849
+        width: 5
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c5b4bd309b3db849b00131c8ee53c8f
+      internalID: -903980074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_6
+      rect:
+        serializedVersion: 2
+        x: 1365
+        y: 846
+        width: 7
+        height: 10
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd468f27a40126746b07313cc0362716
+      internalID: -1707646540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_7
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 607
+        width: 364
+        height: 240
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8190a56ba6e921e4c9031c564802e625
+      internalID: -162668102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_8
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 836
+        width: 71
+        height: 11
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2003bc329cbec5c479297a5919327d52
+      internalID: 1924866737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_9
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 819
+        width: 4
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8aba896c441863418ccc4d90aebfcaf
+      internalID: 458582266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_10
+      rect:
+        serializedVersion: 2
+        x: 1376
+        y: 814
+        width: 6
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7bf0478520e17a499c1a72271aa6a71
+      internalID: -697184756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_11
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 607
+        width: 289
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 335bc5a7e25c02a4c8c44e19265a30cf
+      internalID: -383393993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_12
+      rect:
+        serializedVersion: 2
+        x: 1361
+        y: 804
+        width: 12
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3351a52a203b6747aa0cc4876079932
+      internalID: 412184985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_13
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 795
+        width: 144
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b1adbef6ffe0b31428d91956da778ae0
+      internalID: -768290793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_14
+      rect:
+        serializedVersion: 2
+        x: 1075
+        y: 760
+        width: 6
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07ac768eabd040140b06591f07a8731e
+      internalID: -1954600710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_15
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 735
+        width: 100
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c28b6c377a7d08e439d028c78186202a
+      internalID: 457092676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_16
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 669
+        width: 7
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d852de0027fbeb47bfad63f0d6f7ec3
+      internalID: -1079854389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_17
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 640
+        width: 18
+        height: 15
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: adb086e4cafd3124aaa26328fc0934b0
+      internalID: 2038779987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_18
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 638
+        width: 6
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36f4deb2298ffe94b9c61ddab25eee5a
+      internalID: -1791827287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_19
+      rect:
+        serializedVersion: 2
+        x: 1077
+        y: 645
+        width: 7
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9604b0891da1b8e47a1d141270ef5599
+      internalID: 1281005808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_20
+      rect:
+        serializedVersion: 2
+        x: 634
+        y: 635
+        width: 13
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e4bba7d15938241add09de7484782c
+      internalID: -1309736637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_21
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 634
+        width: 5
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8973ab0fe663c7f418f6089f6cb5c473
+      internalID: 5586069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_22
+      rect:
+        serializedVersion: 2
+        x: 1066
+        y: 632
+        width: 7
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9e92f3665d4f82344a1a558b58ea6302
+      internalID: 271393361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_23
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 617
+        width: 5
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2116f775255a5924ca15937bf5dce4e1
+      internalID: -1394440133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_24
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 617
+        width: 7
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c07dbdae64e3de544a0eaa18b27e8407
+      internalID: 1689614357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_25
+      rect:
+        serializedVersion: 2
+        x: 1072
+        y: 616
+        width: 43
+        height: 16
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3cbb5a0198f45604f8cf90f3922187cb
+      internalID: -615118228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_26
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 143
+        width: 352
+        height: 320
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f16088d2b4d740c468da16a71b26c0ee
+      internalID: 955924823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_27
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 463
+        width: 10
+        height: 11
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c476587758ad314b8d2b49c5915b37f
+      internalID: 795211701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_28
+      rect:
+        serializedVersion: 2
+        x: 833
+        y: 142
+        width: 204
+        height: 354
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 471ac1e0843e94c4fa6731f12df0c498
+      internalID: -1430898779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_29
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 408
+        width: 8
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3169f8829eb0f4998033e2c2f11210
+      internalID: -586403116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_30
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 358
+        width: 5
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97a65a41ffef23e4d9e48f88ae8a0e50
+      internalID: -297669719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_31
+      rect:
+        serializedVersion: 2
+        x: 403
+        y: 361
+        width: 8
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93d9da3dbc1b206409ac8e94f5772f2a
+      internalID: 889295057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_32
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 325
+        width: 4
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 350c5b44ef0752244b97b60baf654a57
+      internalID: 1387255543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_33
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 317
+        width: 13
+        height: 9
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998f27e6571718f479cd08751acd414b
+      internalID: 61533338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_34
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 257
+        width: 4
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ad6ecadd6c3f244da493df43fa73085
+      internalID: -108651122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_35
+      rect:
+        serializedVersion: 2
+        x: 835
+        y: 251
+        width: 5
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12c524f2527396542bdb039a9d1dd34c
+      internalID: 36042443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_36
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 233
+        width: 7
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca48e6044a364f74aa699afaf34c9d48
+      internalID: 580996693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_37
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 221
+        width: 7
+        height: 12
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c6960a13385091458c84d6c4dfd57c4
+      internalID: 1315129924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_38
+      rect:
+        serializedVersion: 2
+        x: 811
+        y: 190
+        width: 8
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d169c73d09f024a90775b0aa740e2d
+      internalID: 1131782725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_39
+      rect:
+        serializedVersion: 2
+        x: 826
+        y: 174
+        width: 18
+        height: 18
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80bb3f4fd4a1db4e826c4b3336a3460
+      internalID: -406049620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_40
+      rect:
+        serializedVersion: 2
+        x: 1052
+        y: 185
+        width: 9
+        height: 6
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82de3e0ec4107c84f8f81b337ad8ce72
+      internalID: 635670680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_41
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 182
+        width: 10
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e4edea812d14a34782c64260506e045
+      internalID: 175140334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_42
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 174
+        width: 8
+        height: 8
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 152714d0256026a49b2cf169c63f8a8d
+      internalID: 1821282078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_43
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 154
+        width: 4
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 304ea7a236c1101409977f829a986416
+      internalID: -471210819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_44
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 149
+        width: 16
+        height: 14
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ae79f616edd7a43a1aed825c34f5ab
+      internalID: -902484791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_45
+      rect:
+        serializedVersion: 2
+        x: 830
+        y: 149
+        width: 9
+        height: 5
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93c6e281e299ef54f9891e0f8ded459d
+      internalID: -1081369272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_46
+      rect:
+        serializedVersion: 2
+        x: 1047
+        y: 149
+        width: 4
+        height: 7
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a943c52b1b117714cacf06a8472de916
+      internalID: 1211669723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sprite_poderes_merc_47
+      rect:
+        serializedVersion: 2
+        x: 911
+        y: 137
+        width: 65
+        height: 4
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30a444d0e74d60645bc1a84a936de505
+      internalID: 773385801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 55aeea89d9e2834408ede2139f881ce1
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +1216,58 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
-    nameFileIdTable: {}
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Sprite_poderes_merc_0: 1919552823
+      Sprite_poderes_merc_1: 825384471
+      Sprite_poderes_merc_10: -697184756
+      Sprite_poderes_merc_11: -383393993
+      Sprite_poderes_merc_12: 412184985
+      Sprite_poderes_merc_13: -768290793
+      Sprite_poderes_merc_14: -1954600710
+      Sprite_poderes_merc_15: 457092676
+      Sprite_poderes_merc_16: -1079854389
+      Sprite_poderes_merc_17: 2038779987
+      Sprite_poderes_merc_18: -1791827287
+      Sprite_poderes_merc_19: 1281005808
+      Sprite_poderes_merc_2: -2017835237
+      Sprite_poderes_merc_20: -1309736637
+      Sprite_poderes_merc_21: 5586069
+      Sprite_poderes_merc_22: 271393361
+      Sprite_poderes_merc_23: -1394440133
+      Sprite_poderes_merc_24: 1689614357
+      Sprite_poderes_merc_25: -615118228
+      Sprite_poderes_merc_26: 955924823
+      Sprite_poderes_merc_27: 795211701
+      Sprite_poderes_merc_28: -1430898779
+      Sprite_poderes_merc_29: -586403116
+      Sprite_poderes_merc_3: -1247736084
+      Sprite_poderes_merc_30: -297669719
+      Sprite_poderes_merc_31: 889295057
+      Sprite_poderes_merc_32: 1387255543
+      Sprite_poderes_merc_33: 61533338
+      Sprite_poderes_merc_34: -108651122
+      Sprite_poderes_merc_35: 36042443
+      Sprite_poderes_merc_36: 580996693
+      Sprite_poderes_merc_37: 1315129924
+      Sprite_poderes_merc_38: 1131782725
+      Sprite_poderes_merc_39: -406049620
+      Sprite_poderes_merc_4: -1287311463
+      Sprite_poderes_merc_40: 635670680
+      Sprite_poderes_merc_41: 175140334
+      Sprite_poderes_merc_42: 1821282078
+      Sprite_poderes_merc_43: -471210819
+      Sprite_poderes_merc_44: -902484791
+      Sprite_poderes_merc_45: -1081369272
+      Sprite_poderes_merc_46: 1211669723
+      Sprite_poderes_merc_47: 773385801
+      Sprite_poderes_merc_5: -903980074
+      Sprite_poderes_merc_6: -1707646540
+      Sprite_poderes_merc_7: -162668102
+      Sprite_poderes_merc_8: 1924866737
+      Sprite_poderes_merc_9: 458582266
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
