@@ -739,7 +739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::minion
   target: {fileID: 91096623}
-  moveSpeed: 2
+  moveSpeed: 3.5
   stopDistance: 0.7
   targetTag: Player
   meleePoint: {fileID: 379609012}
@@ -753,9 +753,9 @@ MonoBehaviour:
   criticalKnockback: 1
   projectilePoint: {fileID: 624358830}
   projectilePrefab: {fileID: 717114459503998223, guid: e162778683777d7478fe030c5161ac40, type: 3}
-  rangedRange: 16
-  rangedDamage: 8
-  rangedCooldown: 3
+  rangedRange: 20
+  rangedDamage: 10
+  rangedCooldown: 2
 --- !u!212 &728153486
 SpriteRenderer:
   serializedVersion: 2
@@ -1959,13 +1959,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
   target: {fileID: 91096623}
-  moveSpeed: 1.5
+  moveSpeed: 4
   stopDistance: 1.2
   targetTag: Player
   meleePoint: {fileID: 1227148827}
-  meleeRange: 2
+  meleeRange: 2.5
   meleeDamage: 20
-  meleeCooldown: 1.2
+  meleeCooldown: 1
   targetLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -1973,9 +1973,9 @@ MonoBehaviour:
   criticalKnockback: 1.5
   projectilePoint: {fileID: 2025447989}
   projectilePrefab: {fileID: 717114459503998223, guid: e162778683777d7478fe030c5161ac40, type: 3}
-  rangedRange: 9
+  rangedRange: 28
   rangedDamage: 15
-  rangedCooldown: 2
+  rangedCooldown: 1.5
 --- !u!70 &1466884395
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

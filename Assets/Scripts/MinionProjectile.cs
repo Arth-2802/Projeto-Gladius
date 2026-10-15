@@ -4,9 +4,10 @@ public class MinionProjectile : MonoBehaviour
 {
     [SerializeField] private float speed = 8f;
     [SerializeField] private float lifetime = 4f;
+    [SerializeField] private float homingDuration = 1.5f;
 
     private Transform target;
-    private Vector2 destination;
+    private Vector2 travelDirection;
     private bool isHoming;
     private int damage;
     private LayerMask targetLayer;
@@ -15,7 +16,7 @@ public class MinionProjectile : MonoBehaviour
     public void Initialize(Transform newTarget, int newDamage, LayerMask newTargetLayer)
     {
         target = newTarget;
-        destination = newTarget == null ? transform.position : newTarget.position;
+        travelDirection = GetDirectionToTarget();
         isHoming = true;
         damage = newDamage;
         targetLayer = newTargetLayer;
@@ -26,7 +27,11 @@ public class MinionProjectile : MonoBehaviour
     public void InitializeAtPosition(Transform targetForHit, Vector2 targetPosition, int newDamage, LayerMask newTargetLayer)
     {
         target = targetForHit;
-        destination = targetPosition;
+        travelDirection = targetPosition - (Vector2)transform.position;
+        if (travelDirection.sqrMagnitude > 0.001f)
+        {
+            travelDirection.Normalize();
+        }
         isHoming = false;
         damage = newDamage;
         targetLayer = newTargetLayer;
@@ -36,35 +41,52 @@ public class MinionProjectile : MonoBehaviour
 
     private void Update()
     {
-        if (target == null)
+        if (isHoming && Time.time - launchTime >= homingDuration)
         {
-            Destroy(gameObject);
-            return;
+            isHoming = false;
         }
 
-        Vector2 currentDestination = isHoming ? target.position : destination;
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            currentDestination,
-            speed * Time.deltaTime);
-
-        Vector2 direction = currentDestination - (Vector2)transform.position;
-        if (direction.sqrMagnitude > 0.001f)
+        if (isHoming && target != null)
         {
-            transform.right = direction;
+            Vector2 directionToTarget = GetDirectionToTarget();
+            if (directionToTarget.sqrMagnitude > 0.001f)
+            {
+                travelDirection = directionToTarget;
+            }
+        }
+
+        transform.position += (Vector3)(travelDirection * speed * Time.deltaTime);
+
+        if (travelDirection.sqrMagnitude > 0.001f)
+        {
+            transform.right = travelDirection;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (target == null || Time.time - launchTime < 0.15f || !IsTargetCollider(other))
+        if (Time.time - launchTime < 0.15f)
         {
             return;
         }
 
-        Debug.Log("MinionProjectile atingiu o alvo.");
-        other.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+        if (target != null && IsTargetCollider(other))
+        {
+            Debug.Log("MinionProjectile atingiu o alvo.");
+            other.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+        }
+
         Destroy(gameObject);
+    }
+
+    private Vector2 GetDirectionToTarget()
+    {
+        if (target == null)
+        {
+            return travelDirection;
+        }
+
+        return ((Vector2)target.position - (Vector2)transform.position).normalized;
     }
 
     private bool IsTargetCollider(Collider2D other)

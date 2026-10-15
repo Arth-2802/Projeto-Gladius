@@ -48,8 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc68ec3cc3b20464e8b6bf17a0d33878, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MinionProjectile
-  speed: 6
+  speed: 12
   lifetime: 10
+  homingDuration: 1.5
 --- !u!50 &6569924386509771218
 Rigidbody2D:
   serializedVersion: 5
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MinionProjectile
   speed: 8
   lifetime: 4
+  homingDuration: 1.5
 --- !u!50 &5042702002644610634
 Rigidbody2D:
   serializedVersion: 5
