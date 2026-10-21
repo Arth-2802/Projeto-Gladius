@@ -41,35 +41,38 @@ public class Inimigo : MonoBehaviour
     private float tempoAnim;
     private float tempoAtaque;
     private bool golpeDado;
+    
+    // VARIÁVEL ADICIONADA PARA O CONTROLE DO EMPURRÃO
+    private float empurrarAte;
 
     void Start()
-{
-    sr = GetComponent<SpriteRenderer>();
-    rb = GetComponent<Rigidbody2D>();
-    meuCol = GetComponent<Collider2D>();
-
-    if (alvo == null) alvo = EncontrarAlvo();
-
-    if (alvo == null)
     {
-        Debug.LogWarning("Inimigo: nao achei o Player. Coloque a Tag 'Player' nele.");
-        return;
+        sr = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        meuCol = GetComponent<Collider2D>();
+
+        if (alvo == null) alvo = EncontrarAlvo();
+
+        if (alvo == null)
+        {
+            Debug.LogWarning("Inimigo: nao achei o Player. Coloque a Tag 'Player' nele.");
+            return;
+        }
+
+        Collider2D[] colsDoAlvo = alvo.GetComponentsInChildren<Collider2D>();
+
+        if (colsDoAlvo.Length == 0)
+        {
+            Debug.LogWarning("Inimigo: o Player nao tem Collider2D, vou medir pelo centro.");
+            return;
+        }
+
+        colAlvo = colsDoAlvo[0];
+
+        // o inimigo e o Player nao colidem entre si (chao e paredes continuam valendo)
+        foreach (Collider2D c in colsDoAlvo)
+            Physics2D.IgnoreCollision(meuCol, c);
     }
-
-    Collider2D[] colsDoAlvo = alvo.GetComponentsInChildren<Collider2D>();
-
-    if (colsDoAlvo.Length == 0)
-    {
-        Debug.LogWarning("Inimigo: o Player nao tem Collider2D, vou medir pelo centro.");
-        return;
-    }
-
-    colAlvo = colsDoAlvo[0];
-
-    // o inimigo e o Player nao colidem entre si (chao e paredes continuam valendo)
-    foreach (Collider2D c in colsDoAlvo)
-        Physics2D.IgnoreCollision(meuCol, c);
-}
 
     private Vida EncontrarAlvo()
     {
@@ -80,16 +83,18 @@ public class Inimigo : MonoBehaviour
             if (v != null) return v;
         }
 
-        foreach (Vida outro in FindObjectsByType<Vida>())
+        // Correção de compatibilidade para FindObjectsByType
+        #if UNITY_2023_1_OR_NEWER
+        foreach (Vida outro in FindObjectsByType<Vida>(FindObjectsSortMode.None))
+        #else
+        foreach (Vida outro in FindObjectsOfType<Vida>())
+        #endif
         {
             if (outro.gameObject != gameObject) return outro;
         }
         return null;
     }
 
-    // folgaX: espaco livre entre os dois corpos (0 = encostados)
-    // alinhadoY: os dois corpos estao na mesma altura
-    // sinal: 1 se o Player esta a direita, -1 se esta a esquerda
     private void Medir(out float folgaX, out bool alinhadoY, out int sinal)
     {
         Bounds a = meuCol.bounds;
@@ -106,6 +111,9 @@ public class Inimigo : MonoBehaviour
     void Update()
     {
         moverX = 0f;
+
+        // TRAVA DO EMPURRÃO ADICIONADA NO UPDATE
+        if (Time.time < empurrarAte) return;
 
         if (alvo == null) return;
 
@@ -165,6 +173,9 @@ public class Inimigo : MonoBehaviour
 
     void FixedUpdate()
     {
+        // TRAVA DO EMPURRÃO ADICIONADA NO FIXEDUPDATE
+        if (Time.time < empurrarAte) return;
+
         rb.linearVelocity = new Vector2(moverX * velocidade, rb.linearVelocity.y);
     }
 
@@ -178,7 +189,6 @@ public class Inimigo : MonoBehaviour
     {
         Medir(out float folgaX, out bool alinhadoY, out int sinal);
 
-        // margem extra: a espada alcanca um pouco alem do ponto onde ele parou
         bool acertou = folgaX <= alcanceAtaque + 0.5f && alinhadoY;
 
         if (acertou) alvo.LevarDano(dano);
@@ -196,5 +206,13 @@ public class Inimigo : MonoBehaviour
         fx.transform.position = pos;
         fx.transform.localScale = transform.localScale;
         fx.AddComponent<EfeitoEspada>().Iniciar(efeitoGolpe, direcao, sr.sortingLayerID, sr.sortingOrder + 1);
+    }
+
+    // FUNÇÃO PÚBLICA DE EMPURRÃO ADICIONADA COM SUCESSO
+    public void Empurrar(Vector2 direcao, float forca, float duracao)
+    {
+        empurrarAte = Time.time + duracao;
+        estado = Estado.Andando; // o golpe interrompe o ataque dele
+        rb.linearVelocity = new Vector2(direcao.x * forca, rb.linearVelocity.y);
     }
 }

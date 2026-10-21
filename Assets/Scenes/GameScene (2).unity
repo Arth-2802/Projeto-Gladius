@@ -381,8 +381,6 @@ MonoBehaviour:
   dashDuration: 0.3
   dashCooldown: 0.5
   airDashes: 1
-  attackDuration: 0.4
-  attackCooldown: 0.5
   groundCheck: {fileID: 250395796}
   groundCheckRadius: 0.5
   groundLayer:
@@ -1251,6 +1249,7 @@ GameObject:
   - component: {fileID: 961678798}
   - component: {fileID: 961678799}
   - component: {fileID: 961678800}
+  - component: {fileID: 961678801}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -1354,6 +1353,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &961678801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961678797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a756f71b2ab3c5419e071b9c0524c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimEvents
+  dano: 10
+  offsetHitbox: {x: 1.2, y: 1}
+  tamanhoHitbox: {x: 1.6, y: 1.6}
+  forcaEmpurrao: 6
+  duracaoEmpurrao: 0.15
+  mostrarDebug: 1
 --- !u!1 &969167261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2233,6 +2250,7 @@ GameObject:
   - component: {fileID: 1355676522}
   - component: {fileID: 1355676526}
   - component: {fileID: 1355676525}
+  - component: {fileID: 1355676527}
   m_Layer: 0
   m_Name: Inimigo_Teste
   m_TagString: Untagged
@@ -2289,12 +2307,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1389916911, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
+  m_Sprite: {fileID: -767307036, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.48}
+  m_Size: {x: 35.03215, y: 40.4375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2312,7 +2330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Inimigo
   alvo: {fileID: 0}
-  velocidade: 2
+  velocidade: 3
   alcanceAtaque: 0.6
   dano: 10
   intervaloAtaque: 1.2
@@ -2320,26 +2338,30 @@ MonoBehaviour:
   mostrarDebug: 1
   desenhoOlhaParaDireita: 1
   andar:
-  - {fileID: -1389916911, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
-  - {fileID: -1871740585, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
-  - {fileID: 1602689417, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
-  - {fileID: 1867263378, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
-  - {fileID: 1612477234, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
-  - {fileID: 1196916806, guid: ca3c7e82f213f8a47a0e2f53a329dcbc, type: 3}
+  - {fileID: -767307036, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
+  - {fileID: -1437669053, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
+  - {fileID: -1935152207, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
+  - {fileID: -67637078, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
+  - {fileID: -1012159103, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
+  - {fileID: -737418483, guid: a557cf00169ac4e42a1929fad38cfec8, type: 3}
   atacar:
-  - {fileID: 1938436521, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
-  - {fileID: -381629647, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
-  - {fileID: 1436276290, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
-  - {fileID: -184417575, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
-  - {fileID: -845710971, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
-  - {fileID: -154114465, guid: 2df61258c14a63842906c1a1ecbc309d, type: 3}
+  - {fileID: 2094208829, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: -1530205510, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: 574212909, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: -1769779523, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: 841204832, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: -195999519, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
+  - {fileID: 1338962546, guid: c2eaad685bd9ad8459ffbafd8371de62, type: 3}
   fpsAndar: 8
   fpsAtaque: 10
   efeitoGolpe:
-  - {fileID: -622075860, guid: cb64705120d975042b5d9ae8a6137817, type: 3}
-  - {fileID: -1444424920, guid: cb64705120d975042b5d9ae8a6137817, type: 3}
-  - {fileID: 1687201084, guid: cb64705120d975042b5d9ae8a6137817, type: 3}
-  - {fileID: -110846680, guid: cb64705120d975042b5d9ae8a6137817, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   posicaoEfeito: {x: 1.2, y: 0.5}
 --- !u!4 &1355676524
 Transform:
@@ -2350,7 +2372,7 @@ Transform:
   m_GameObject: {fileID: 1355676521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -11.6, z: 0}
+  m_LocalPosition: {x: 2, y: -12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2420,6 +2442,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &1355676527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1355676521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a0ec4057e5109408c872182c6e7882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VidaInimigo
+  vidaMaxima: 50
+  mostrarNoConsole: 1
+  usarTeclaDeTeste: 1
+  teclaDeTeste: 24
+  danoDeTeste: 10
+  tempoAteSumir: 0.5
 --- !u!1 &1392518925
 GameObject:
   m_ObjectHideFlags: 0
@@ -4011,8 +4051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GerenciadorSave
   acoes: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
-  cenaDoJogo: GameScene (2)
-  botaoContinuar: {fileID: 0}
   jogador: {fileID: 91096623}
   vida: {fileID: 0}
   salvarACadaSegundos: 30

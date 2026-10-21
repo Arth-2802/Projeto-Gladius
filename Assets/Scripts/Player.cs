@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float health = 100f;
     private const string DashAnimationState = "Dash";
+    private const string AttackAnimationState = "Attack";
 
     private Vida vida;
 
@@ -35,17 +37,21 @@ public class Player : MonoBehaviour
     private bool isGrounded;
 
     public int facingDirection = 1;
-    //Inputs
+
+    // Inputs
     public Vector2 moveInput;
     private bool JumpPressed;
     private bool JumpReleased;
     private int extraJumpsRemaining;
 
-    //Dash
+    // Dash
     private float dashCooldownCounter = 0f;
     private bool isDashing = false;
     private float dashTimer = 0f;
     private int airDashesRemaining;
+
+    // Attack
+    private bool isAttacking = false;
 
     private void Start()
     {
@@ -58,10 +64,12 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (vida.Morto)
+        if (vida != null && vida.Morto)
         {
             moveInput = Vector2.zero;
             isDashing = false;
+            isAttacking = false;
+
             anim.SetBool("isDashing", false);
             anim.SetBool("isWalking", false);
             anim.SetBool("isJumping", false);
@@ -76,7 +84,7 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (vida.Morto) return;
+        if (vida != null && vida.Morto) return;
 
         ApplyVariableGravity();
         CheckGrounded();
@@ -90,7 +98,10 @@ public class Player : MonoBehaviour
         if (!isDashing)
         {
             float targetSpeed = moveInput.x * speed;
-            rb.linearVelocity = new Vector2(targetSpeed, rb.linearVelocity.y);
+            rb.linearVelocity = new Vector2(
+                targetSpeed,
+                rb.linearVelocity.y
+            );
         }
     }
 
@@ -100,24 +111,33 @@ public class Player : MonoBehaviour
         {
             if (isGrounded)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x, JumpForce
+                );
                 JumpReleased = false;
             }
             else if (extraJumpsRemaining > 0)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, JumpForce);
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x, JumpForce
+                );
                 extraJumpsRemaining--;
                 JumpReleased = false;
             }
 
             JumpPressed = false;
         }
+
         if (JumpReleased)
         {
             if (rb.linearVelocity.y > 0)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, rb.linearVelocity.y * JumpCutMultiplier);
+                rb.linearVelocity = new Vector2(
+                    rb.linearVelocity.x,
+                    rb.linearVelocity.y * JumpCutMultiplier
+                );
             }
+
             JumpReleased = false;
         }
     }
@@ -127,7 +147,9 @@ public class Player : MonoBehaviour
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
-            rb.linearVelocity = new Vector2(facingDirection * dashSpeed, 0);
+            rb.linearVelocity = new Vector2(
+                facingDirection * dashSpeed, 0
+            );
 
             if (dashTimer <= 0)
             {
@@ -165,7 +187,11 @@ public class Player : MonoBehaviour
 
     void CheckGrounded()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isGrounded = Physics2D.OverlapCircle(
+            groundCheck.position,
+            groundCheckRadius,
+            groundLayer
+        );
 
         if (isGrounded)
         {
@@ -176,13 +202,28 @@ public class Player : MonoBehaviour
 
     void HandleAnimations()
     {
-        anim.SetBool("isJumping", rb.linearVelocity.y > 1f && !isDashing);
+        if (isAttacking || isDashing) return;
+
+        anim.SetBool(
+            "isJumping",
+            rb.linearVelocity.y > 1f && !isDashing
+        );
+
         anim.SetBool("isGrounded", isGrounded);
 
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
-        anim.SetBool("isIdle", Mathf.Abs(moveInput.x) < .1f && isGrounded && !isDashing);
-        anim.SetBool("isWalking", Mathf.Abs(moveInput.x) > .1f && isGrounded && !isDashing);
+        anim.SetBool(
+            "isIdle",
+            Mathf.Abs(moveInput.x) < 0.1f &&
+            isGrounded && !isDashing
+        );
+
+        anim.SetBool(
+            "isWalking",
+            Mathf.Abs(moveInput.x) > 0.1f &&
+            isGrounded && !isDashing
+        );
     }
 
     void Flip()
@@ -202,6 +243,7 @@ public class Player : MonoBehaviour
     public void OnMove(InputValue value)
     {
         if (vida != null && vida.Morto) return;
+
         moveInput = value.Get<Vector2>();
     }
 
@@ -225,7 +267,11 @@ public class Player : MonoBehaviour
 
         bool canAirDash = !isGrounded && airDashesRemaining > 0;
 
-        if (value.isPressed && dashCooldownCounter <= 0 && !isDashing && (isGrounded || canAirDash))
+        if (value.isPressed &&
+            dashCooldownCounter <= 0 &&
+            !isDashing &&
+            !isAttacking &&
+            (isGrounded || canAirDash))
         {
             if (!isGrounded)
             {
@@ -235,17 +281,45 @@ public class Player : MonoBehaviour
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownCounter = dashCooldown;
+
             anim.SetBool("isIdle", false);
             anim.SetBool("isWalking", false);
             anim.SetBool("isJumping", false);
             anim.SetBool("isDashing", true);
+
             anim.Play(DashAnimationState, 0, 0f);
         }
     }
 
+    public void OnAttack(InputValue value)
+    {
+        if (vida == null || vida.Morto) return;
+        if (!value.isPressed || isDashing || isAttacking) return;
+
+        isAttacking = true;
+
+        anim.SetBool("isIdle", false);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isJumping", false);
+        anim.SetBool("isDashing", false);
+
+        anim.Play(AttackAnimationState, 0, 0f);
+    }
+
+    // Chamado por um Animation Event no último quadro do ataque.
+    public void FinishAttack()
+    {
+        isAttacking = false;
+    }
+
     private void OnDrawGizmosSelected()
     {
+        if (groundCheck == null) return;
+
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(
+            groundCheck.position,
+            groundCheckRadius
+        );
     }
 }
