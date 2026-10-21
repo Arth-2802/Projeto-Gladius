@@ -253,6 +253,7 @@ MonoBehaviour:
   attackDamage: 17
   criticalChance: 0.25
   criticalDamage: 27
+  maxHealth: 100
   groundCheck: {fileID: 250395796}
   groundCheckRadius: 0.5
   groundLayer:
@@ -739,7 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::minion
   target: {fileID: 91096623}
-  moveSpeed: 3.5
+  moveSpeed: 2
   stopDistance: 0.7
   targetTag: Player
   meleePoint: {fileID: 379609012}
@@ -1437,7 +1438,7 @@ Transform:
   m_GameObject: {fileID: 1096337515}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 28.15, y: 0.8, z: 0}
+  m_LocalPosition: {x: 28.37, y: 1.13, z: 0}
   m_LocalScale: {x: 1.1364071, y: 1.1358626, z: 0.99116}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1976,6 +1977,15 @@ MonoBehaviour:
   rangedRange: 28
   rangedDamage: 15
   rangedCooldown: 1.5
+  groundColumnPrefab: {fileID: -5629490162861738345, guid: 10e59d37d58fbf148bca381b25c29aad, type: 3}
+  groundColumnDamage: 45
+  groundColumnCount: 15
+  groundColumnSpacing: 5
+  groundColumnWidth: 1.5
+  groundColumnWarning: 0.75
+  groundColumnDuration: 3
+  groundColumnCooldown: 12
+  groundColumnRange: 10
 --- !u!70 &1466884395
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

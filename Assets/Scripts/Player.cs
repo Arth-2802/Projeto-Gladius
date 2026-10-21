@@ -37,6 +37,10 @@ public class Player : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float criticalChance = 0.25f;
     [SerializeField] private int criticalDamage = 27;
 
+    [Header("Health")]
+    [SerializeField] private int maxHealth = 100;
+    private int currentHealth;
+
     [Header("Ground Check")]
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -63,6 +67,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        currentHealth = maxHealth;
         rb.gravityScale = normalGravity;
         extraJumpsRemaining = extraJumps;
         airDashesRemaining = airDashes;
@@ -310,6 +315,23 @@ public class Player : MonoBehaviour
                     : "Jogador acertou o boss por " + damage + " de dano.");
                 break;
             }
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (damage <= 0 || currentHealth <= 0)
+        {
+            return;
+        }
+
+        currentHealth = Mathf.Max(currentHealth - damage, 0);
+        Debug.Log("Jogador recebeu " + damage + " de dano. Vida: " + currentHealth + "/" + maxHealth);
+
+        if (currentHealth == 0)
+        {
+            Debug.Log("Jogador derrotado.");
+            Destroy(gameObject);
         }
     }
 

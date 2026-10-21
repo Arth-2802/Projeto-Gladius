@@ -27,8 +27,22 @@ public class Boss : MonoBehaviour
     [SerializeField] private int rangedDamage = 15;
     [SerializeField] private float rangedCooldown = 2f;
 
+    [Header("Ground column attack")]
+    [SerializeField] private BossGroundColumn groundColumnPrefab;
+    [SerializeField] private int groundColumnDamage = 45;
+    [SerializeField] private int groundColumnCount = 15;
+    [SerializeField] private float groundColumnSpacing = 1.8f;
+    [SerializeField] private float groundColumnWidth = 1.5f;
+    [SerializeField] private float groundColumnWarning = 0.75f;
+    [SerializeField] private float groundColumnDuration = 3f;
+    [SerializeField] private float groundColumnCooldown = 12f;
+    [SerializeField] private float groundColumnRange = 10f;
+
     private float meleeTimer;
     private float rangedTimer;
+    private float groundColumnTimer;
+    private bool groundColumnAttackActive;
+    private bool groundColumnWarningShown;
 
     private void Start()
     {
@@ -67,6 +81,12 @@ public class Boss : MonoBehaviour
             targetLayer = 1 << target.gameObject.layer;
         }
 
+        if (groundColumnPrefab == null && !groundColumnWarningShown)
+        {
+            Debug.LogWarning("Boss sem Ground Column Prefab: arraste BossGroundColumn.prefab para o campo Ground Column Prefab.", this);
+            groundColumnWarningShown = true;
+        }
+
         IgnorePhysicalCollisionWithTarget();
     }
 
@@ -79,9 +99,17 @@ public class Boss : MonoBehaviour
 
         meleeTimer -= Time.deltaTime;
         rangedTimer -= Time.deltaTime;
+        groundColumnTimer -= Time.deltaTime;
 
         float distance = Vector2.Distance(transform.position, target.position);
         FaceTarget();
+
+        if (groundColumnAttackActive)
+        {
+            return;
+        }
+
+        TryGroundColumnAttack(distance);
 
         if (distance > stopDistance)
         {
@@ -188,6 +216,67 @@ public class Boss : MonoBehaviour
 
         projectile.Initialize(target, rangedDamage, targetLayer);
         rangedTimer = rangedCooldown;
+    }
+
+    private void TryGroundColumnAttack(float distance)
+    {
+        if (groundColumnPrefab == null || groundColumnTimer > 0f || distance > groundColumnRange)
+        {
+            return;
+        }
+
+        int columnCount = Mathf.Max(1, groundColumnCount);
+        float firstOffset = (columnCount - 1) * groundColumnSpacing * -0.5f;
+
+        for (int index = 0; index < columnCount; index++)
+        {
+            Vector3 spawnPosition = target.position;
+            spawnPosition.x += firstOffset + index * groundColumnSpacing;
+
+            BossGroundColumn column = Instantiate(
+                groundColumnPrefab,
+                spawnPosition,
+                Quaternion.identity);
+
+            column.transform.localScale = new Vector3(
+                groundColumnWidth,
+                column.transform.localScale.y,
+                column.transform.localScale.z);
+            column.Initialize(targetLayer, groundColumnDamage, groundColumnWarning, groundColumnDuration);
+        }
+
+        groundColumnAttackActive = true;
+        groundColumnTimer = groundColumnCooldown;
+        FireGroundColumnProjectiles();
+        StartCoroutine(ReleaseGroundColumnAttack());
+        Debug.Log("Boss iniciou o ataque de colunas do chão.");
+    }
+
+    private void FireGroundColumnProjectiles()
+    {
+        if (projectilePrefab == null)
+        {
+            return;
+        }
+
+        for (int index = 0; index < 2; index++)
+        {
+            Vector3 spawnPosition = projectilePoint.position;
+            spawnPosition.x += index == 0 ? -0.3f : 0.3f;
+
+            MinionProjectile projectile = Instantiate(
+                projectilePrefab,
+                spawnPosition,
+                Quaternion.identity);
+
+            projectile.Initialize(target, rangedDamage, targetLayer);
+        }
+    }
+
+    private System.Collections.IEnumerator ReleaseGroundColumnAttack()
+    {
+        yield return new WaitForSeconds(groundColumnWarning + 0.3f + groundColumnDuration + 0.3f);
+        groundColumnAttackActive = false;
     }
 
     private void OnDrawGizmosSelected()

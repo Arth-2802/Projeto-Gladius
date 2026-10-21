@@ -157,6 +157,15 @@ MonoBehaviour:
   rangedRange: 9
   rangedDamage: 15
   rangedCooldown: 2
+  groundColumnPrefab: {fileID: -5629490162861738345, guid: 10e59d37d58fbf148bca381b25c29aad, type: 3}
+  groundColumnDamage: 45
+  groundColumnCount: 15
+  groundColumnSpacing: 1.8
+  groundColumnWidth: 1.5
+  groundColumnWarning: 0.75
+  groundColumnDuration: 3
+  groundColumnCooldown: 12
+  groundColumnRange: 30
 --- !u!4 &2000000000000000001
 Transform:
   m_ObjectHideFlags: 0
