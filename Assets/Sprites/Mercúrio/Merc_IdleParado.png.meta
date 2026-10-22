@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a742659fd7521db42ada70fc950f2748
+guid: 546d236d160bf2b4384a18e7cf67390a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 90
+  spritePixelsToUnits: 230
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_0
+      name: Merc_IdleParado_0
       rect:
         serializedVersion: 2
-        x: 60
-        y: 422
-        width: 188
-        height: 281
+        x: 53
+        y: 83
+        width: 398
+        height: 926
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d83e41636cf7ca64692361b4e062ce07
-      internalID: 356171455
+      spriteID: 6f32ffb0ba1eae34c9c33fc48644f7f8
+      internalID: -1507906431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_1
+      name: Merc_IdleParado_1
       rect:
         serializedVersion: 2
-        x: 312
-        y: 418
-        width: 189
-        height: 294
+        x: 557
+        y: 83
+        width: 398
+        height: 912
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -186,20 +186,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5605ff222047344dac5d7298b2ae8c4
-      internalID: 1123238621
+      spriteID: cd574aae31493a148b779a8692be9d38
+      internalID: -708430298
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_2
+      name: Merc_IdleParado_2
       rect:
         serializedVersion: 2
-        x: 564
-        y: 418
-        width: 188
-        height: 294
+        x: 1061
+        y: 83
+        width: 398
+        height: 912
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -208,20 +208,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8d478a4bc4f62843be2570d3840d3ed
-      internalID: -734712036
+      spriteID: b7153384d429f654bb794dc46efd01d0
+      internalID: 835103579
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_3
+      name: Merc_IdleParado_3
       rect:
         serializedVersion: 2
-        x: 812
-        y: 422
-        width: 196
-        height: 309
+        x: 1565
+        y: 83
+        width: 398
+        height: 912
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,20 +230,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3aa5545091116c04398556f1234e5b7a
-      internalID: -353893021
+      spriteID: 4c454c0f6e8c6c645a0e1463c46df208
+      internalID: 619051727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_4
+      name: Merc_IdleParado_4
       rect:
         serializedVersion: 2
-        x: 1063
-        y: 418
-        width: 333
-        height: 301
+        x: 2055
+        y: 83
+        width: 412
+        height: 912
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -252,20 +252,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f52309c95434a1b4b969fa388ab23919
-      internalID: 1882529769
+      spriteID: 131b0a30f0a8f794ab133f22de0a6f5c
+      internalID: -2007665443
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_5
+      name: Merc_IdleParado_5
       rect:
         serializedVersion: 2
-        x: 47
-        y: 30
-        width: 373
-        height: 294
+        x: 2559
+        y: 83
+        width: 412
+        height: 926
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -274,20 +274,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72573d99f2e102c4c88de1c2b11743c3
-      internalID: -107154893
+      spriteID: 9ec108132c32cae4f920f104262e69d0
+      internalID: 1954847558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_6
+      name: Merc_IdleParado_6
       rect:
         serializedVersion: 2
-        x: 472
-        y: 30
-        width: 401
-        height: 305
+        x: 3063
+        y: 83
+        width: 412
+        height: 926
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -296,20 +296,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15c5932853298e042b684cadf54876fa
-      internalID: -562422099
+      spriteID: 78ddf9eba9927f84cbe5300407f65c39
+      internalID: 825777869
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Merc_attack-spriteteste_7
+      name: Merc_IdleParado_7
       rect:
         serializedVersion: 2
-        x: 940
-        y: 34
-        width: 196
-        height: 309
+        x: 3581
+        y: 83
+        width: 398
+        height: 926
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -318,30 +318,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c02fe7d4fa9423e42ac739a20e582fbd
-      internalID: 1878098257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Merc_attack-spriteteste_8
-      rect:
-        serializedVersion: 2
-        x: 1206
-        y: 34
-        width: 188
-        height: 281
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 71e6d8ec0659f6f438d3e07ab2a0079f
-      internalID: -21508361
+      spriteID: c25614bc073f6e644a32f83c1bd94c60
+      internalID: -1078511703
       vertices: []
       indices: 
       edges: []
@@ -350,7 +328,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 34226d64e43e5e845a31013f3288fdc3
+    spriteID: 09fc1078a047af94a80f920e24eed21f
     internalID: 0
     vertices: []
     indices: 
@@ -362,15 +340,14 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Merc_attack-spriteteste_0: 356171455
-      Merc_attack-spriteteste_1: 1123238621
-      Merc_attack-spriteteste_2: -734712036
-      Merc_attack-spriteteste_3: -353893021
-      Merc_attack-spriteteste_4: 1882529769
-      Merc_attack-spriteteste_5: -107154893
-      Merc_attack-spriteteste_6: -562422099
-      Merc_attack-spriteteste_7: 1878098257
-      Merc_attack-spriteteste_8: -21508361
+      Merc_IdleParado_0: -1507906431
+      Merc_IdleParado_1: -708430298
+      Merc_IdleParado_2: 835103579
+      Merc_IdleParado_3: 619051727
+      Merc_IdleParado_4: -2007665443
+      Merc_IdleParado_5: 1954847558
+      Merc_IdleParado_6: 825777869
+      Merc_IdleParado_7: -1078511703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
