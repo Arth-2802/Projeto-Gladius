@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 926ca7f14fcb2f1469c67d5be2229add
+guid: 9b8fc0a5d4d709d47a823ddf9e1eda9b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 250
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -149,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_0
+      name: Gladiador_Idle_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 220
-        width: 540
-        height: 825
+        x: 181
+        y: 59
+        width: 1261
+        height: 2220
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,118 +164,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18cb42e2726a0a64ba6a7cb5831a50f0
-      internalID: 793459789
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_1
-      rect:
-        serializedVersion: 2
-        x: 661
-        y: 220
-        width: 589
-        height: 800
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 21601e5ab5c11a845a3bf129288274a6
-      internalID: -491350406
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_2
-      rect:
-        serializedVersion: 2
-        x: 1398
-        y: 157
-        width: 575
-        height: 863
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e40ed226e1db5414eb119e32051a0c02
-      internalID: -1570645330
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_3
-      rect:
-        serializedVersion: 2
-        x: 2071
-        y: 171
-        width: 563
-        height: 849
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd7d7e5fcf8005b42a2710cf7181bb48
-      internalID: 1270307546
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_4
-      rect:
-        serializedVersion: 2
-        x: 2693
-        y: 183
-        width: 589
-        height: 801
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3b450754d8399be41958044721c1703b
-      internalID: 53857653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Marc_Corrida-REVAMP_5
-      rect:
-        serializedVersion: 2
-        x: 3441
-        y: 146
-        width: 540
-        height: 838
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e66409b1c89561b4d913858127c514ec
-      internalID: -1606825615
+      spriteID: 1bc29f3534aed294e97eec16d47db569
+      internalID: 632750869
       vertices: []
       indices: 
       edges: []
@@ -284,7 +174,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0f895cd6f67f5c64d957cbff6626148d
+    spriteID: 8ee48ec8c311f3d40ba11652c6eff4c7
     internalID: 0
     vertices: []
     indices: 
@@ -296,12 +186,7 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Marc_Corrida-REVAMP_0: 793459789
-      Marc_Corrida-REVAMP_1: -491350406
-      Marc_Corrida-REVAMP_2: -1570645330
-      Marc_Corrida-REVAMP_3: 1270307546
-      Marc_Corrida-REVAMP_4: 53857653
-      Marc_Corrida-REVAMP_5: -1606825615
+      Gladiador_Idle_0: 632750869
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
