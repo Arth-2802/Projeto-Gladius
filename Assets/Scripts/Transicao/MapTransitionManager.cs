@@ -14,6 +14,7 @@ public class MapTransitionManager : MonoBehaviour
     [SerializeField] private CinemachineCamera cinemachineCamera;
     [SerializeField] private CinemachineConfiner2D confiner;
     [SerializeField] private ScreenFader fader;
+    [SerializeField] private Collider2D[] mapBounds;
 
     [Header("Pausa com a tela preta")]
     [Tooltip("Pequeno intervalo para garantir que o teleporte aconteca totalmente escondido.")]
@@ -61,6 +62,26 @@ public class MapTransitionManager : MonoBehaviour
         {
             Instance = null;
         }
+    }
+
+    // O save restaura a posicao dentro da mesma cena; a camera precisa acompanhar o mapa.
+    public void RestoreCameraAfterLoad(Vector3 previousPosition)
+    {
+        if (player == null || confiner == null || cinemachineCamera == null) return;
+
+        Physics2D.SyncTransforms();
+        if (mapBounds != null)
+        {
+            foreach (Collider2D bounds in mapBounds)
+            {
+                if (bounds == null || !bounds.OverlapPoint(player.transform.position)) continue;
+                confiner.BoundingShape2D = bounds;
+                confiner.InvalidateBoundingShapeCache();
+                break;
+            }
+        }
+
+        cinemachineCamera.OnTargetObjectWarped(player.transform, player.transform.position - previousPosition);
     }
 
     public void StartTransition(
