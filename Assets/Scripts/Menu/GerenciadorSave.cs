@@ -248,10 +248,18 @@ public class GerenciadorSave : MonoBehaviour
             return;
         }
 
+        Vector3 posicaoAnterior = jogador.position;
         jogador.position = new Vector3(d.posX, d.posY, jogador.position.z);
 
         Rigidbody2D rb = jogador.GetComponent<Rigidbody2D>();
-        if (rb != null) rb.linearVelocity = Vector2.zero;
+        if (rb != null)
+        {
+            rb.position = jogador.position;
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        if (MapTransitionManager.Instance != null)
+            MapTransitionManager.Instance.RestoreCameraAfterLoad(posicaoAnterior);
 
         if (vida != null) vida.DefinirVida(d.vida);
 
