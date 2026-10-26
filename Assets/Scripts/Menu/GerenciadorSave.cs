@@ -44,13 +44,6 @@ public class GerenciadorSave : MonoBehaviour
     private static int slotAtual;          // slot que esta sendo jogado (0 = perfil 1)
     private static bool carregarAoEntrar;
     private static bool editorJaCarregou;
-    private static bool saindo;            // true quando o jogo/editor esta fechando
-
-    // NOVO: o menu escuta este evento para atualizar os textos dos slots
-    public static event System.Action SlotsAlterados;
-
-    // NOVO: o gerenciador da cena atual (para salvar de fora, ex.: botao "Voltar ao menu")
-    public static GerenciadorSave Instancia { get; private set; }
 
     // ---------- estado desta cena ----------
     private bool pronto;
@@ -75,14 +68,6 @@ public class GerenciadorSave : MonoBehaviour
         slotAtual = 0;
         carregarAoEntrar = false;
         editorJaCarregou = false;
-        saindo = false;
-        SlotsAlterados = null;
-        Instancia = null;
-    }
-
-    private static void AvisarMudanca()
-    {
-        if (!saindo) SlotsAlterados?.Invoke();
     }
 
     // ---------- configuracoes (teclas) ----------
@@ -163,8 +148,6 @@ public class GerenciadorSave : MonoBehaviour
     {
         try { File.WriteAllText(CaminhoSlot(i), JsonUtility.ToJson(Slot(i), true)); }
         catch (System.Exception e) { Debug.LogError("Erro ao gravar o slot " + (i + 1) + ": " + e.Message); }
-
-        AvisarMudanca();
     }
 
     // ---------- usado pelo MenuController ----------
@@ -184,7 +167,6 @@ public class GerenciadorSave : MonoBehaviour
         slots[slot] = new DadosSave { criado = true };
         GravarSlot(slot);
         carregarAoEntrar = false;
-        Debug.Log("[Save] Novo jogo no slot " + (slot + 1));
         return cenaPadrao;
     }
 
@@ -196,7 +178,6 @@ public class GerenciadorSave : MonoBehaviour
 
         slotAtual = slot;
         carregarAoEntrar = d.temProgresso;
-        Debug.Log("[Save] Continuar no slot " + (slot + 1));
         return string.IsNullOrEmpty(d.cena) ? cenaPadrao : d.cena;
     }
 
@@ -205,14 +186,6 @@ public class GerenciadorSave : MonoBehaviour
         slots[slot] = new DadosSave();
         if (File.Exists(CaminhoSlot(slot))) File.Delete(CaminhoSlot(slot));
         Debug.Log("[Save] Slot " + (slot + 1) + " apagado.");
-        AvisarMudanca();
-    }
-
-    // NOVO: salva agora, de qualquer lugar. Chame antes de carregar o menu
-    // (ex.: no botao "Voltar ao menu" do pause), assim o menu ja abre atualizado.
-    public static void SalvarAgora()
-    {
-        if (Instancia != null) Instancia.SalvarJogo();
     }
 
     // ---------- botao "Tentar novamente" da tela de game over ----------
@@ -227,8 +200,6 @@ public class GerenciadorSave : MonoBehaviour
     // ---------- inicio da cena ----------
     void Awake()
     {
-        Instancia = this;
-
         Debug.Log("[Save] Pasta: " + Application.persistentDataPath);
 
         if (acoes != null && !string.IsNullOrEmpty(Config.teclas))
@@ -248,9 +219,6 @@ public class GerenciadorSave : MonoBehaviour
         if (jogador == null) yield break;
 
         if (vida == null) vida = jogador.GetComponentInChildren<Vida>();
-
-        // NOVO: mostra qual slot esta valendo nesta cena
-        Debug.Log("[Save] Cena de jogo usando o SLOT " + (slotAtual + 1));
 
         // espera um quadro para o Start do Vida rodar antes
         yield return null;
@@ -340,15 +308,12 @@ public class GerenciadorSave : MonoBehaviour
     // salva ao sair da cena (ex.: voltar ao menu), a menos que o jogador tenha morrido
     void OnDestroy()
     {
-        if (pronto && temUltimo && !ultimoMorto)
-            GravarProgresso(ultimaPos, ultimaVida);
-
-        if (Instancia == this) Instancia = null;
+        if (!pronto || !temUltimo || ultimoMorto) return;
+        GravarProgresso(ultimaPos, ultimaVida);
     }
 
     void OnApplicationQuit()
     {
-        saindo = true; // nao avisa o menu ao fechar o Play (os objetos dele ja estao sendo destruidos)
         SalvarJogo();
     }
 }
