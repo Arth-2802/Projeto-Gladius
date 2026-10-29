@@ -1,4 +1,3 @@
-
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +8,7 @@ public class Player : MonoBehaviour
     private const string AttackAnimationState = "Attack";
 
     private Vida vida;
+    private SomPlayer som;
 
     [Header("Components")]
     public Rigidbody2D rb;
@@ -56,6 +56,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         vida = GetComponent<Vida>();
+        som = GetComponent<SomPlayer>();
 
         rb.gravityScale = normalGravity;
         extraJumpsRemaining = extraJumps;
@@ -70,6 +71,8 @@ public class Player : MonoBehaviour
             isDashing = false;
             isAttacking = false;
 
+            if (som != null) som.Passos(false);
+
             anim.SetBool("isDashing", false);
             anim.SetBool("isWalking", false);
             anim.SetBool("isJumping", false);
@@ -80,6 +83,9 @@ public class Player : MonoBehaviour
         Flip();
         HandleAnimations();
         UpdateDashCooldown();
+
+        if (som != null)
+            som.Passos(Mathf.Abs(moveInput.x) > 0.1f && isGrounded && !isDashing && !isAttacking);
     }
 
     void FixedUpdate()
@@ -121,6 +127,7 @@ public class Player : MonoBehaviour
                 rb.linearVelocity = new Vector2(
                     rb.linearVelocity.x, JumpForce
                 );
+                if (som != null) som.DoubleJump();
                 extraJumpsRemaining--;
                 JumpReleased = false;
             }
@@ -288,6 +295,7 @@ public class Player : MonoBehaviour
             anim.SetBool("isDashing", true);
 
             anim.Play(DashAnimationState, 0, 0f);
+            if (som != null) som.Dash();
         }
     }
 
@@ -304,6 +312,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isDashing", false);
 
         anim.Play(AttackAnimationState, 0, 0f);
+        if (som != null) som.Ataque();
     }
 
     // Chamado por um Animation Event no último quadro do ataque.

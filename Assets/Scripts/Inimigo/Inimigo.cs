@@ -35,13 +35,14 @@ public class Inimigo : MonoBehaviour
     private Rigidbody2D rb;
     private Collider2D meuCol;
     private Collider2D colAlvo;
+    private SomInimigo som;
     private int direcao = 1;
     private float moverX;
     private float proximoAtaque;
     private float tempoAnim;
     private float tempoAtaque;
     private bool golpeDado;
-    
+
     // VARIÁVEL ADICIONADA PARA O CONTROLE DO EMPURRÃO
     private float empurrarAte;
 
@@ -50,6 +51,7 @@ public class Inimigo : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         meuCol = GetComponent<Collider2D>();
+        som = GetComponent<SomInimigo>();
 
         if (alvo == null) alvo = EncontrarAlvo();
 
@@ -146,6 +148,9 @@ public class Inimigo : MonoBehaviour
                     tempoAtaque = 0f;
                     golpeDado = false;
                     proximoAtaque = Time.time + intervaloAtaque;
+
+                    // som do golpe sendo desferido
+                    if (som != null) som.Swing();
                 }
             }
         }
@@ -191,7 +196,13 @@ public class Inimigo : MonoBehaviour
 
         bool acertou = folgaX <= alcanceAtaque + 0.5f && alinhadoY;
 
-        if (acertou) alvo.LevarDano(dano);
+        if (acertou)
+        {
+            alvo.LevarDano(dano);
+
+            // som da espada acertando o player
+            if (som != null) som.Acerto();
+        }
 
         if (mostrarDebug)
             Debug.Log(acertou

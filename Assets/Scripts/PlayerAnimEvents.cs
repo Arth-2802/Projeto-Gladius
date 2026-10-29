@@ -47,6 +47,9 @@ public class PlayerAnimEvents : MonoBehaviour
 
             vida.LevarDano(dano);
 
+            SomPlayer som = player.GetComponent<SomPlayer>();
+            if (som != null) som.Acerto();
+
             // Busca o componente Inimigo de forma padrão
             Inimigo inimigo = vida.GetComponent<Inimigo>();
             if (inimigo != null)

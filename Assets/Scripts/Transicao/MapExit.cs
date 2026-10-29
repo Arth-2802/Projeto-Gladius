@@ -20,6 +20,23 @@ public class MapExit : MonoBehaviour
     [Tooltip("Tempo para revelar o mapa novo.")]
     [SerializeField, Min(0f)] private float fadeInTime = 0.3f;
 
+    [Header("Condicao para passar (opcional)")]
+    [Tooltip("Deixe vazio para a saida ficar sempre liberada.")]
+    [SerializeField] private VidaInimigo[] inimigosQueTemQueMorrer;
+
+    [Tooltip("Spawner do mapa de destino (opcional). Inicia quando o player chega la.")]
+    [SerializeField] private SpawnInimigosDepois spawnerDoDestino;
+
+    [Header("Recompensa ao passar de mapa")]
+    [Tooltip("Vida que o Player ganha ao passar por esta saida. 0 = nao cura.")]
+    [SerializeField, Min(0f)] private float curaAoPassar = 0f;
+
+    [Tooltip("Marcado: cura so na primeira vez (evita ficar indo e voltando para encher a vida).")]
+    [SerializeField] private bool curarSoUmaVez = true;
+
+    private bool jaCurou;
+    private float proximaCuraPermitida;
+
     private void Reset()
     {
         SetColliderAsTrigger();
@@ -30,9 +47,19 @@ public class MapExit : MonoBehaviour
         SetColliderAsTrigger();
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    // OnTriggerStay garante que, se o player ja estiver na saida quando o
+    // ultimo inimigo morrer, a passagem abre sem ele precisar sair e voltar.
+    private void OnTriggerEnter2D(Collider2D other) { TentarPassar(other); }
+    private void OnTriggerStay2D(Collider2D other) { TentarPassar(other); }
+
+    private void TentarPassar(Collider2D other)
     {
         if (other.GetComponentInParent<Player>() == null)
+        {
+            return;
+        }
+
+        if (!InimigosMortos())
         {
             return;
         }
@@ -43,11 +70,45 @@ public class MapExit : MonoBehaviour
             return;
         }
 
+        Curar(other);
+
+        if (spawnerDoDestino != null) spawnerDoDestino.Iniciar();
+
         MapTransitionManager.Instance.StartTransition(
             destinationSpawn,
             destinationBounds,
             fadeOutTime,
             fadeInTime);
+    }
+
+    private void Curar(Collider2D other)
+    {
+        if (curaAoPassar <= 0f) return;
+        if (curarSoUmaVez && jaCurou) return;
+
+        // o trigger dispara varias vezes seguidas; esta pausa garante uma cura so por passagem
+        if (Time.time < proximaCuraPermitida) return;
+
+        Vida vida = other.GetComponentInParent<Vida>();
+        if (vida == null || vida.Morto) return;
+
+        vida.DefinirVida(vida.VidaAtual + curaAoPassar);
+
+        jaCurou = true;
+        proximaCuraPermitida = Time.time + 2f;
+        Debug.Log($"MapExit: curou {curaAoPassar} de vida.");
+    }
+
+    private bool InimigosMortos()
+    {
+        if (inimigosQueTemQueMorrer == null) return true;
+
+        foreach (VidaInimigo v in inimigosQueTemQueMorrer)
+        {
+            // inimigo destruido (null) ou morto = ok
+            if (v != null && !v.Morto) return false;
+        }
+        return true;
     }
 
     private void OnDrawGizmos()
